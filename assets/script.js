@@ -1,1 +1,1 @@
-var 
+var body = document.body;
