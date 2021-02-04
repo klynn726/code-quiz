@@ -1,14 +1,18 @@
 var timerEl = document.getElementById('countdown');
 
 
-
-
 var startPageEl = document.querySelector("#page-content");
 
+var submitButton = document.createElement("BUTTON");   // Create a <button> element
+submitButton.innerHTML = "Start";                   // text inside the buton
+submitButton.className = "btn";                     // adds a class so CSS can target
+document.body.appendChild(submitButton);            //adds the button to the body of the html
 
 
+var quiz = function() {
+  preventDefault();
 
-
+}
 
 // Timer that counts down from 5
 function countdown() {
@@ -30,12 +34,17 @@ function countdown() {
       timerEl.textContent = '';
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
-      // Call the `displayMessage()` function
-      displayMessage();
+      stopQuiz()
     }
   }, 1000);
+
+}
+
+var stopQuiz = function(){
+  
 }
 
 
-startBtn.addEventListener('click', countdown);
+submitButton.addEventListener('click', countdown);
+
 
