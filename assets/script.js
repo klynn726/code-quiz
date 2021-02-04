@@ -17,9 +17,7 @@ var quiz = function() {
 var questions = [
 {
   question: "What language uses syntax that begins with $",
-  answers: {
-    a: "DOM", b: "Javascript", c: "JQuery", d: "CSS"
-  },
+  answers: {a: "DOM", b: "Javascript", c: "JQuery", d: "CSS"},
   correctAnswer: "c"
 },
 
@@ -42,12 +40,40 @@ correctAnswer: "d"
 },
 
 {
-  question:"",
-
+question: "What can be used to select a specific HTML element by id?",
+answers: {a:"getElementById", b:"createElement", c:"setAttribute", d:"appendChild"},
+correctAnswer: "a"
 },
 
+{
+question: "What can be used to create an id for a DOM element?",
+answers: {a:"getElementById", b:"createElement", c:"setAttribute", d:"appendChild"},
+correctAnswer: "c"
+},
 
+{
+question: "What can be used to target the first element with a specific selector?",
+answers: {a:"getElementById", b:"querySelector", c:"createElement", d:"appendChild"},
+correctAnswer: "b"
+},
 
+{
+question: "What is not an example of a mouse event?",
+answers: {a:"trigger", b:"click", c:"contextmenu", d:"mouseover"},
+correctAnswer: "a"
+},
+
+{
+question: "What stops the page from reloading when inputs are entered?",
+answers: {a:"stopReload", b:"null", c:"preventDefault", d:"avoidRefresh"},
+correctAnswer: "c"
+},
+
+{
+question: "An array is contained in which of the following:",
+answers: {a:"{}", b:"()", c:"''", d:"[]"},
+correctAnswer: "d"
+},
 
 ]
 
