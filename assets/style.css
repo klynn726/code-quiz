@@ -3,10 +3,14 @@ header {
   font-family: Impact, 'Arial Narrow Bold', sans-serif;
 }
 
+.btn {
+  color: blue;
+}
+
 body {
   font-family: Impact, 'Arial Narrow Bold', sans-serif;
 }
 
-.btn {
-  color: blue;
+#page-content {
+  color: red;
 }
