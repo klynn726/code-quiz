@@ -39,36 +39,39 @@ var printQuestion = ()=>{
   btnD.addEventListener('click', showAnswerD);
 
 }
+function footer () { 
+var footer = document.createElement("FOOTER");    //https://www.tutorialspoint.com/html-dom-footer-object and https://stackoverflow.com/questions/9422974/createelement-with-id
+document.body.appendChild(footer);
+
+var div1 = document.createElement("DIV");
+var t = document.createElement("P");
+t.setAttribute("id", "yup");  
+var txtT = document.createTextNode("Correct!")
+
+var div2 = document.createElement("DIV");
+var f = document.createElement("P");
+f.id = 'nope';  
+var txtF = document.createTextNode("Wrong!")
+
+t.appendChild(txtT);
+f.appendChild(txtF);
+
+div1.appendChild(t);
+div2.appendChild(f);
+
+footer.appendChild(div1);
+footer.appendChild(div2);
+
+document.getElementById("nope").style.visibility = "hidden";
+document.getElementById("yup").style.visibility = "hidden";      //https://www.w3schools.com/jsref/prop_style_visibility.asp
+
+
+
+}
 
 //detects right/wrong
 //shows right/wrong
 var showAnswerA = () =>{
-
-  var footer = document.createElement("FOOTER");    //https://www.tutorialspoint.com/html-dom-footer-object and https://stackoverflow.com/questions/9422974/createelement-with-id
-  document.body.appendChild(footer);
-
-  var div1 = document.createElement("DIV");
-  var t = document.createElement("P");
-  t.setAttribute("id", "yup");  
-  var txtT = document.createTextNode("Correct!")
-  document.getElementById("yup").style.visibility = "hidden";             //https://www.w3schools.com/jsref/prop_style_visibility.asp
-
-  var div2 = document.createElement("DIV");
-  var f = document.createElement("P");
-  f.id = 'nope';  
-  var txtF = document.createTextNode("Wrong!")
-  document.getElementById("nope").style.visibility = "hidden";
-
-  t.appendChild(txtT);
-  f.appendChild(txtF);
-
-  div1.appendChild(t);
-  div2.appendChild(f);
-
-  footer.appendChild(div1);
-  footer.appendChild(div2);
-
-
 
   if (questions[currentQuestion].correctAnswer == "a"){
     score += 5;
