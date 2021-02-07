@@ -18,6 +18,12 @@ submitButton.innerHTML = "Start Quiz";
 submitButton.className = "btn";  
 document.body.appendChild(submitButton);  
 
+var submitInitials = document.createElement("BUTTON");   
+submitInitials.innerHTML = "Submit";                   
+submitInitials.className = "btnSubInitials";  
+submitInitials.id = "subBtnInitials"
+document.body.appendChild(submitInitials);  
+document.getElementById("subBtnInitials").style.visibility = "hidden";
 
 //prints question
 //has buttons with answer choices printed in them
@@ -170,26 +176,17 @@ var highScore =()=>{
 
   document.getElementById("Q").innerHTML = 
   `All Done!
-  Your final score is: ${score}
+  Your final score is: ${score}   //**************************how do i put the var score into this? 
   <form id="entInitials">
   <label for="enterInitials">Enter initials:</label>
   <input type="text" id="initials" name="enterInitials">
-  </form>
-  <button id="submitInitials" type="submit" form="entInitials" value ="Submit">Sumbit</button>`;
+  </form>`;
+
+  document.getElementById("subBtnInitials").style.visibility = "visible"
 
   score = document.querySelector('#user-score');
   initials = document.querySelector('#user-initials');
 }
-
-//get high score and show high score page
-function leaderboard () {
-  score = localStorage.getItem(initials);
-  userInitialsInput = localStorage.getItem(score);
-
-  userInitialsSpan.textContent = initials;
-  userScoreSpan.textContent = score;
-}
-
 
 //set new score to local storage
 submitInitials.addEventListener('click', function(event){ //***how do i target this button i created with js above?
@@ -201,18 +198,19 @@ submitInitials.addEventListener('click', function(event){ //***how do i target t
   localStorage.setItem('initials', userInitialsInput);
   localStorage.setItem('score', score);
 
-  leaderboard();
+  viewHighScore();
 });
-
-
 
 //retrieve local storage with high scores list
 //go back and clear buttons and listeners added here
 var viewHighScore =()=>{
   document.getElementById("Q").innerHTML = "High scores"
 
+  score = localStorage.getItem(initials);
+  userInitialsInput = localStorage.getItem(score);
 
-
+  userInitialsSpan.textContent = initials;     ///********this causes an error */
+  userScoreSpan.textContent = score;          //probably this too, i got this code from the class but wasnt sure it would work. 
 
   var goBack = document.createElement("button");   
     goBack.innerHTML = "Play Again?";                   
@@ -226,7 +224,7 @@ var viewHighScore =()=>{
     goBack.className = "clearHigh";                    
     document.body.appendChild(clear);  
 
-    clear.addEventListener('click', unkATT);  //*********need to add unkATT function**************************************
+    clear.addEventListener('click');
 
 
 }
