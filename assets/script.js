@@ -1,50 +1,30 @@
 var timerEl = document.getElementById('countdown');
-var timeLeft = 90;
+var timeLeft = 60;
 var currentQuestion = 0;
 var score = 0;
 
-var btnA = document.createElement("button");
-btnA.innerHTML = "A";   
-btnA.className = "button"
-document.body.appendChild(btnA);    
+//*********i want the letter buttons attached to the HTML class/id so they are in their proper places
+var btnA = "A";
+btnA.className = "ansAns";
+var btnB = "B";
+btnB.className = "ansAns";  
+var btnC = "C";
+btnC.className = "ansAns";  
+var btnD = "D";
+btnD.className = "ansAns";  
 
-var btnB = document.createElement("button");
-btnB.innerHTML = "B";   
-btnB.className = "button"
-document.body.appendChild(btnB);    
-
-var btnC = document.createElement("button");
-btnC.innerHTML = "C";   
-btnC.className = "button"
-document.body.appendChild(btnC);    
-
-var btnD = document.createElement("button");
-btnD.innerHTML = "D";   
-btnD.className = "button"
-document.body.appendChild(btnD); 
-
-var submitButton = document.createElement("BUTTON");   // Create a <button> element
-submitButton.innerHTML = "Start";                   // text inside the buton
-submitButton.className = "btn";                     // adds a class so CSS can target
-document.body.appendChild(submitButton);            //adds the button to the body of the html
-
-
-
-// var quizLoop =()=>{
-//   for (i = 0; i < questions.length; i++) { 
-//     printQuestion();
-//   }
-//   stopQuiz();
-// }
-
-
-
+//*********i want the submit button attached to the HTML id "submit" so it is in its proper place on the page
+var submitButton = document.createElement("BUTTON");   
+submitButton.innerHTML = "Start Quiz";                   
+submitButton.className = "btn";  
+submitButton.setAttribute("id", "submit")               
+document.body.appendChild(submitButton);            
 
 //prints question
-//switches between questions
 //has buttons with answer choices printed in them
 
 var printQuestion = ()=>{
+    submitButton.style.display = "none";
     document.getElementById("Q").innerHTML = questions[currentQuestion].question;
 
     btnA.innerHTML = questions[currentQuestion].answers.a
@@ -52,57 +32,121 @@ var printQuestion = ()=>{
     btnC.innerHTML = questions[currentQuestion].answers.c
     btnD.innerHTML = questions[currentQuestion].answers.d
 
-    currentQuestion++;
-
-  btnA.addEventListener('click', showAnswer);
-  btnB.addEventListener('click', showAnswer);
-  btnC.addEventListener('click', showAnswer);
-  btnD.addEventListener('click', showAnswer);
+  btnA.addEventListener('click', showAnswerA);
+  btnB.addEventListener('click', showAnswerB);
+  btnC.addEventListener('click', showAnswerC);
+  btnD.addEventListener('click', showAnswerD);
 
 }
 
-
+//********** i want the correct/wrong strings attached to the "tf"" class so they are in their proper places
 //detects right/wrong
 //shows right/wrong
-var showAnswer = () =>{
-  if (true){
-        //******how to connect the answers obj to the click event to check for true/false??????
+var showAnswerA = () =>{
+  if (questions[currentQuestion].correctAnswer == "a"){
+    score += 5;
+    document.getElementById("ans").innerHTML = "Correct!";
+    document.getElementById("score").innerHTML = "Score: " + score;
   }
   else{
-
+    timeLeft -=5;
+    document.getElementById("ans").innerHTML = "Wrong!";
   }
 
   checks()
 }
 
+var showAnswerB = () =>{
+  if (questions[currentQuestion].correctAnswer == "b"){
+    score += 5;
+    document.getElementById("ans").innerHTML = "Correct!";
+    document.getElementById("score").innerHTML = "Score: " + score;
+  }
+  else{
+    timeLeft -=5;
+    document.getElementById("ans").innerHTML = "Wrong!";
+  }
+
+  checks()
+}
+
+var showAnswerC = () =>{
+  if (questions[currentQuestion].correctAnswer == "c"){
+    score += 5;
+    document.getElementById("ans").innerHTML = "Correct!";
+    document.getElementById("score").innerHTML = "Score: " + score;
+  }
+  else{
+    timeLeft -=5;
+    document.getElementById("ans").innerHTML = "Wrong!";
+  }
+
+  checks()
+}
+
+var showAnswerD = () =>{
+  if (questions[currentQuestion].correctAnswer == "d"){
+    score += 5;
+    document.getElementById("ans").innerHTML = "Correct!";
+    document.getElementById("score").innerHTML = "Score: " + score;
+  }
+  else{
+    timeLeft -=5;
+    document.getElementById("ans").innerHTML = "Wrong!";
+  }
+  checks()
+}
+
+
 //if correct add points to score else minus off time
 //time check, trigger end quiz 
 //check for more obj in question array, trigger end quiz 
+//switches between questions
+//returns to printQuestion function
 var checks = () =>{
-
-
-
-
-  // if (timeLeft = 0) {
-  //   stopQuiz();
-  // }
-  //   if (questions.length = 0)
-  //   {
-  //     stopQuiz();
-  //   }
+  if (timeLeft == 0) {
+    stopQuiz();
+  }
+   else if (currentQuestion == 9)
+    {
+      stopQuiz();
+    }
+    else{
+      currentQuestion++;
+      printQuestion();
+    }
 }
 
 //goes into stop quiz function
-//high score and set to local storage
+//clears page
+//add initials, set new score to local storage and show high score page
 //retrieve local storage with high scores list
+
 var highScore =()=>{
+  //***********still need to add functionality as stated above  
+  document.getElementById("Q").innerHTML = "All Done! Your final score is: " + score;
+  document.getElementById("ans").innerHTML = "";
+  document.getElementById("tf").innerHTML = "";
+  btnA.style.display = "none";
+  btnB.style.display = "none";
+  btnC.style.display = "none";
+  btnD.style.display = "none";
+
+  
+
+
+  var goBack = document.createElement("button");   
+    goBack.innerHTML = "Go Back";                   
+    goBack.className = "restart";                    
+    document.body.appendChild(goBack);  
 
 }
 
 //triggers high score function
 //and clear timer
 var stopQuiz = function(){
-
+  timeLeft = "";
+  highScore();
 }
 
 function countdown() {
@@ -116,26 +160,47 @@ function countdown() {
     } else {
       timerEl.textContent = '';
       clearInterval(timeInterval);
-      stopQuiz()
+      // stopQuiz()
     }
   }, 1000);
 
 }
 
-
-
 var startQuiz = function(event) {
-  event.preventDefault();  
+  event.preventDefault(); 
+
+  submitButton.innerHTML = "Submit";               
+ 
+  btnA = document.createElement("button");  
+  btnA.className = "button"
+  document.body.appendChild(btnA);    
+
+  btnB = document.createElement("button");  
+  btnB.className = "button"
+  document.body.appendChild(btnB);    
+
+  btnC = document.createElement("button");
+  btnC.className = "button"
+  document.body.appendChild(btnC);    
+
+  btnD = document.createElement("button");  
+  btnD.className = "button"
+  document.body.appendChild(btnD); 
+ 
   countdown();
+
   printQuestion();
  
 }
 
 submitButton.addEventListener('click', startQuiz);
 
-//used the idea of questions in a variable creating an object with answers and correct answers from https://www.sitepoint.com/simple-javascript-quiz/ the remainder of the code was not applicapable to my goals for this quiz
+//used the idea of questions in a variable creating an object with answers and correct answers from
+//https://www.sitepoint.com/simple-javascript-quiz/ the remainder of the code was not applicapable to my 
+//goals for this quiz
 
-//https://www.w3schools.com/js/js_arrays.asp and https://www.w3schools.com/js/js_objects.asp  and  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values
+//https://www.w3schools.com/js/js_arrays.asp and https://www.w3schools.com/js/js_objects.asp  and  
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values
 
 //thought maybe pull info to make an array of just one element ie an array of just questions in a variable. 
 
