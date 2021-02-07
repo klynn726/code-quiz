@@ -5,6 +5,7 @@ header {
 
 .btn {
   color: blue;
+  font-weight: bold;
 }
 
 body {
@@ -13,4 +14,10 @@ body {
 
 #page-content {
   color: red;
+}
+
+.button {
+  color: rgb(15, 238, 15);
+  font-weight: bold;
+  background-color: rgb(0, 0, 0);
 }

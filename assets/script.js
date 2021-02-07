@@ -1,5 +1,27 @@
 var timerEl = document.getElementById('countdown');
-var timeLeft = 60;
+var timeLeft = 90;
+var currentQuestion = 0;
+var score = 0;
+
+var btnA = document.createElement("button");
+btnA.innerHTML = "A";   
+btnA.className = "button"
+document.body.appendChild(btnA);    
+
+var btnB = document.createElement("button");
+btnB.innerHTML = "B";   
+btnB.className = "button"
+document.body.appendChild(btnB);    
+
+var btnC = document.createElement("button");
+btnC.innerHTML = "C";   
+btnC.className = "button"
+document.body.appendChild(btnC);    
+
+var btnD = document.createElement("button");
+btnD.innerHTML = "D";   
+btnD.className = "button"
+document.body.appendChild(btnD); 
 
 var submitButton = document.createElement("BUTTON");   // Create a <button> element
 submitButton.innerHTML = "Start";                   // text inside the buton
@@ -8,69 +30,72 @@ document.body.appendChild(submitButton);            //adds the button to the bod
 
 
 
+// var quizLoop =()=>{
+//   for (i = 0; i < questions.length; i++) { 
+//     printQuestion();
+//   }
+//   stopQuiz();
+// }
 
 
-// Timer that counts down from 5
-function countdown() {
-  // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var timeInterval = setInterval(function() {
-    // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1) {
-      // Set the `textContent` of `timerEl` to show the remaining seconds
-      timerEl.textContent = 'Timer: ' + timeLeft + ' seconds remaining';
-      // Decrement `timeLeft` by 1
-      timeLeft--;
-    } else if (timeLeft === 1) {
-      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-      timerEl.textContent = 'Timer: ' + timeLeft + ' second remaining';
-      timeLeft--;
-    } else {
-      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-      timerEl.textContent = '';
-      // Use `clearInterval()` to stop the timer
-      clearInterval(timeInterval);
-      stopQuiz()
-    }
-  }, 1000);
 
-}
 
+//prints question
 //switches between questions
-//time check
-//check for more obj in question array trigger end quiz 
-var setNextQuestion = ()=>{
+//has buttons with answer choices printed in them
 
+var printQuestion = ()=>{
+    document.getElementById("Q").innerHTML = questions[currentQuestion].question;
+
+    btnA.innerHTML = questions[currentQuestion].answers.a
+    btnB.innerHTML = questions[currentQuestion].answers.b
+    btnC.innerHTML = questions[currentQuestion].answers.c
+    btnD.innerHTML = questions[currentQuestion].answers.d
+
+    currentQuestion++;
 }
 
+//detects click
+btnA.addEventListener('click', showAnswer);
+btnB.addEventListener('click', showAnswer);
+btnC.addEventListener('click', showAnswer);
+btnD.addEventListener('click', showAnswer);
+
+//detects right/wrong
 //shows right/wrong
+var showAnswer = () =>{
+  if (true){
+        //******how to connect the answers obj to the click event to check for true/false??????
+  }
+  else{
 
-var showQuestion = () =>{
+  }
 
+  checks()
 }
 
-//if correct + to score else minus off time
-var selectAnswer = () =>{
+//if correct add points to score else minus off time
+//time check, trigger end quiz 
+//check for more obj in question array, trigger end quiz 
+var checks = () =>{
 
+
+
+
+  // if (timeLeft = 0) {
+  //   stopQuiz();
+  // }
+  //   if (questions.length = 0)
+  //   {
+  //     stopQuiz();
+  //   }
 }
 
+//goes into stop quiz function
 //high score and set to local storage
 //retrieve local storage with high scores list
 var highScore =()=>{
 
-}
-
-
-// var questionsLoop = funtion(questions){
-  // for (i = 0; i < questions.length; i++) {
-  //   document.getElementById("page-content").innerHTML = questions[0];
-    
-  // }
-// }
-
-var startQuiz = function(event) {
-  event.preventDefault();  
-  countdown();
-  
 }
 
 //triggers high score function
@@ -79,8 +104,39 @@ var stopQuiz = function(){
 
 }
 
+function countdown() {
+  var timeInterval = setInterval(function() {
+    if (timeLeft > 1) {
+      timerEl.textContent = 'Timer: ' + timeLeft + ' seconds remaining';
+      timeLeft--;
+    } else if (timeLeft === 1) {
+      timerEl.textContent = 'Timer: ' + timeLeft + ' second remaining';
+      timeLeft--;
+    } else {
+      timerEl.textContent = '';
+      clearInterval(timeInterval);
+      stopQuiz()
+    }
+  }, 1000);
+
+}
+
+
+
+var startQuiz = function(event) {
+  event.preventDefault();  
+  countdown();
+  printQuestion();
+ 
+}
 
 submitButton.addEventListener('click', startQuiz);
+
+//used the idea of questions in a variable creating an object with answers and correct answers from https://www.sitepoint.com/simple-javascript-quiz/ the remainder of the code was not applicapable to my goals for this quiz
+
+//https://www.w3schools.com/js/js_arrays.asp and https://www.w3schools.com/js/js_objects.asp  and  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values
+
+//thought maybe pull info to make an array of just one element ie an array of just questions in a variable. 
 
 
 var questions = [
@@ -140,7 +196,7 @@ var questions = [
   
   {
   question: "An array is contained in which of the following:",
-  answers: {a:"{}", b:"()", c:"''", d:"[]"},
+  answers: {a:" { } ", b:" (  ) ", c:" '  ' ", d:" [  ] "},
   correctAnswer: "d"
   },
   
