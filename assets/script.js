@@ -2,6 +2,7 @@ var timerEl = document.getElementById('countdown');
 var timeLeft = 60;
 var currentQuestion = 0;
 var score = 0;
+var userInitialsInput = document.querySelector('#user-initials');
 
 var btnA = "A";
 btnA.className = "ansAns";
@@ -16,9 +17,6 @@ var submitButton = document.createElement("BUTTON");
 submitButton.innerHTML = "Start Quiz";                   
 submitButton.className = "btn";  
 document.body.appendChild(submitButton);  
-
-var t = "";
-var f = "";
 
 
 //prints question
@@ -45,12 +43,12 @@ document.body.appendChild(footer);
 
 var div1 = document.createElement("DIV");
 var t = document.createElement("P");
-t.setAttribute("id", "yup");  
+t.id = 'yup';  
 var txtT = document.createTextNode("Correct!")
 
 var div2 = document.createElement("DIV");
 var f = document.createElement("P");
-f.id = 'nope';  
+f.id = 'nope';                                  //https://stackoverflow.com/questions/9422974/createelement-with-id
 var txtF = document.createTextNode("Wrong!")
 
 t.appendChild(txtT);
@@ -65,13 +63,14 @@ footer.appendChild(div2);
 document.getElementById("nope").style.visibility = "hidden";
 document.getElementById("yup").style.visibility = "hidden";      //https://www.w3schools.com/jsref/prop_style_visibility.asp
 
-
-
 }
 
 //detects right/wrong
 //shows right/wrong
 var showAnswerA = () =>{
+
+  document.getElementById("nope").style.visibility = "hidden";
+  document.getElementById("yup").style.visibility = "hidden";   
 
   if (questions[currentQuestion].correctAnswer == "a"){
     score += 5;
@@ -87,6 +86,10 @@ var showAnswerA = () =>{
 }
 
 var showAnswerB = () =>{
+
+  document.getElementById("nope").style.visibility = "hidden";
+  document.getElementById("yup").style.visibility = "hidden";   
+  
   if (questions[currentQuestion].correctAnswer == "b"){
     score += 5;
     document.getElementById("yup").style.visibility = "visible";  
@@ -101,6 +104,10 @@ var showAnswerB = () =>{
 }
 
 var showAnswerC = () =>{
+
+  document.getElementById("nope").style.visibility = "hidden";
+  document.getElementById("yup").style.visibility = "hidden";   
+  
   if (questions[currentQuestion].correctAnswer == "c"){
     score += 5;
     document.getElementById("yup").style.visibility = "visible"; 
@@ -115,6 +122,10 @@ var showAnswerC = () =>{
 }
 
 var showAnswerD = () =>{
+
+  document.getElementById("nope").style.visibility = "hidden";
+  document.getElementById("yup").style.visibility = "hidden";   
+  
   if (questions[currentQuestion].correctAnswer == "d"){
     score += 5;
     document.getElementById("yup").style.visibility = "visible";  
@@ -134,10 +145,7 @@ var showAnswerD = () =>{
 //switches between questions
 //returns to printQuestion function
 var checks = () =>{
-  if (timeLeft == 0) {
-    stopQuiz();
-  }
-   else if (currentQuestion == 9)
+ if (currentQuestion == 9)
     {
       stopQuiz();
     }
@@ -147,20 +155,61 @@ var checks = () =>{
     }
 }
 
-//goes into stop quiz function
-//clears page
-//add initials, set new score to local storage and show high score page
-//retrieve local storage with high scores list
+//add initials
 
-var highScore =()=>{
-  //***********still need to add functionality as stated above  
-  document.getElementById("Q").innerHTML = "All Done! Your final score is: " + score;
-  document.getElementById("tf").innerHTML = "";
-  document.getElementById("tf").innerHTML = "";
-  btnA.style.display = "none";
+var highScore =()=>{ 
+  document.getElementById("score").innerHTML = "";
+
+  btnA.style.display = "none"; //https://www.w3schools.com/jsref/prop_style_display.asp
   btnB.style.display = "none";
   btnC.style.display = "none";
   btnD.style.display = "none";
+
+  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+  //https://www.w3schools.com/tags/att_button_form.asp
+
+  document.getElementById("Q").innerHTML = 
+  `All Done!
+  Your final score is: ${score}
+  <form id="entInitials">
+  <label for="enterInitials">Enter initials:</label>
+  <input type="text" id="initials" name="enterInitials">
+  </form>
+  <button id="submitInitials" type="submit" form="entInitials" value ="Submit">Sumbit</button>`;
+
+  score = document.querySelector('#user-score');
+  initials = document.querySelector('#user-initials');
+}
+
+//get high score and show high score page
+function leaderboard () {
+  score = localStorage.getItem(initials);
+  userInitialsInput = localStorage.getItem(score);
+
+  userInitialsSpan.textContent = initials;
+  userScoreSpan.textContent = score;
+}
+
+
+//set new score to local storage
+submitInitials.addEventListener('click', function(event){ //***how do i target this button i created with js above?
+  event.preventDefault();
+
+  userInitialsInput = document.querySelector('#user-initials').Value;
+  score = document.querySelector('#user-score').Value;
+
+  localStorage.setItem('initials', userInitialsInput);
+  localStorage.setItem('score', score);
+
+  leaderboard();
+});
+
+
+
+//retrieve local storage with high scores list
+//go back and clear buttons and listeners added here
+var viewHighScore =()=>{
+  document.getElementById("Q").innerHTML = "High scores"
 
 
 
@@ -171,15 +220,31 @@ var highScore =()=>{
     document.body.appendChild(goBack);  
 
     goBack.addEventListener('click', startQuiz);
+
+    var clear = document.createElement("button");   
+    clear.innerHTML = "Clear high scores";                   
+    goBack.className = "clearHigh";                    
+    document.body.appendChild(clear);  
+
+    clear.addEventListener('click', unkATT);  //*********need to add unkATT function**************************************
+
+
 }
 
 //triggers high score function
-//and clear timer
+//and clear timeLeft var
+//clears correct/wrong
 var stopQuiz = ()=> {
   timeLeft = "";
   highScore();
+
+  document.getElementById("nope").style.visibility = "hidden";
+  document.getElementById("yup").style.visibility = "hidden";   
+
 }
 
+//this is modified from the classwork to countdown from 60 in one second intervals and printing that to the screen
+//when time runs out it runs the stopQuiz function and the timeInterval var is cleared. timerEl is linked to the HTML id countdown on line 1
 
 function countdown() {
   var timeInterval = setInterval(function() {
@@ -192,19 +257,20 @@ function countdown() {
     } else {
       timerEl.textContent = '';
       clearInterval(timeInterval);
-      // stopQuiz()   this causes the stop quiz function to run twice and to make two go back buttons
+      stopQuiz()   
     }
   }, 1000);
 
 }
 
+//prevents default ie page relaoding when buttons are clicked, puts a score placeholder on the screen,
+//adds buttons to the page for user input, runs the countdown, printQuestion, and footer functions. 
+
 var startQuiz = function(event) {
   event.preventDefault(); 
 
-  submitButton.innerHTML = "Submit";    
+  document.getElementById("score").innerHTML = "Score: " + score;
   
-  
- 
   btnA = document.createElement("button");  
   btnA.className = "button"
   document.body.appendChild(btnA);    
@@ -224,6 +290,8 @@ var startQuiz = function(event) {
   countdown();
 
   printQuestion();
+
+  footer();
  
 }
 
@@ -235,9 +303,6 @@ submitButton.addEventListener('click', startQuiz);
 
 //https://www.w3schools.com/js/js_arrays.asp and https://www.w3schools.com/js/js_objects.asp  and  
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values
-
-//thought maybe pull info to make an array of just one element ie an array of just questions in a variable. 
-
 
 var questions = [
   {

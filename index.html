@@ -8,27 +8,33 @@
   <title>Coding Quiz</title>
 </head>
 <header>
-  <div id="score">View High Scores</div>
-  <div id="countdown">Timer</div>
+  <div id="highScores">View High Scores</div>
+  <div id="score"></div>
+  <div id="countdown"></div>
 </header>
 
 <body>
   <main id="page-content">
     <div id="Q">
-      Coding Quiz Challange!<br>
-      Beat the timer and set your high score!
+      <h1>Coding Quiz Challange</h1>
+      <p>Try to answer the following code-related questions within the time. <br>
+        Keep in mine that incorrect answers will penalize your time <br>
+        by five seconds.</p>
     </div>
 
     <div id="ans" class="ansAns">
 
     </div>
 
-
+    <div class="leader" id="leaderboard">
+      <span id="user-initials"></span>
+      <span id="user-score"></span>
+    </div>
 
   </main>
 
 
- 
+
   <script src="assets/script.js"></script>
 </body>
 
