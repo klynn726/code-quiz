@@ -30,8 +30,8 @@ Katherine Lynn
 
 ## Github deployed page: 
 
-[Github deployed page]()
+[Github deployed page](https://github.com/klynn726/code-quiz)
 
 ## Github repository: 
 
-[Github repository]()
+[Github repository](https://klynn726.github.io/code-quiz/)
