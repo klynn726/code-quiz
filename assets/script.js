@@ -3,7 +3,6 @@ var timeLeft = 60;
 var currentQuestion = 0;
 var score = 0;
 
-//*********i want the letter buttons attached to the HTML class/id so they are in their proper places
 var btnA = "A";
 btnA.className = "ansAns";
 var btnB = "B";
@@ -13,12 +12,14 @@ btnC.className = "ansAns";
 var btnD = "D";
 btnD.className = "ansAns";  
 
-//*********i want the submit button attached to the HTML id "submit" so it is in its proper place on the page
 var submitButton = document.createElement("BUTTON");   
 submitButton.innerHTML = "Start Quiz";                   
 submitButton.className = "btn";  
-submitButton.setAttribute("id", "submit")               
-document.body.appendChild(submitButton);            
+document.body.appendChild(submitButton);  
+
+var t = "";
+var f = "";
+
 
 //prints question
 //has buttons with answer choices printed in them
@@ -39,18 +40,44 @@ var printQuestion = ()=>{
 
 }
 
-//********** i want the correct/wrong strings attached to the "tf"" class so they are in their proper places
 //detects right/wrong
 //shows right/wrong
 var showAnswerA = () =>{
+
+  var footer = document.createElement("FOOTER");    //https://www.tutorialspoint.com/html-dom-footer-object and https://stackoverflow.com/questions/9422974/createelement-with-id
+  document.body.appendChild(footer);
+
+  var div1 = document.createElement("DIV");
+  var t = document.createElement("P");
+  t.setAttribute("id", "yup");  
+  var txtT = document.createTextNode("Correct!")
+  document.getElementById("yup").style.visibility = "hidden";             //https://www.w3schools.com/jsref/prop_style_visibility.asp
+
+  var div2 = document.createElement("DIV");
+  var f = document.createElement("P");
+  f.id = 'nope';  
+  var txtF = document.createTextNode("Wrong!")
+  document.getElementById("nope").style.visibility = "hidden";
+
+  t.appendChild(txtT);
+  f.appendChild(txtF);
+
+  div1.appendChild(t);
+  div2.appendChild(f);
+
+  footer.appendChild(div1);
+  footer.appendChild(div2);
+
+
+
   if (questions[currentQuestion].correctAnswer == "a"){
     score += 5;
-    document.getElementById("ans").innerHTML = "Correct!";
+    document.getElementById("yup").style.visibility = "visible";  
     document.getElementById("score").innerHTML = "Score: " + score;
   }
   else{
     timeLeft -=5;
-    document.getElementById("ans").innerHTML = "Wrong!";
+    document.getElementById("nope").style.visibility = "visible";
   }
 
   checks()
@@ -59,12 +86,12 @@ var showAnswerA = () =>{
 var showAnswerB = () =>{
   if (questions[currentQuestion].correctAnswer == "b"){
     score += 5;
-    document.getElementById("ans").innerHTML = "Correct!";
+    document.getElementById("yup").style.visibility = "visible";  
     document.getElementById("score").innerHTML = "Score: " + score;
   }
   else{
     timeLeft -=5;
-    document.getElementById("ans").innerHTML = "Wrong!";
+    document.getElementById("nope").style.visibility = "visible";
   }
 
   checks()
@@ -73,12 +100,12 @@ var showAnswerB = () =>{
 var showAnswerC = () =>{
   if (questions[currentQuestion].correctAnswer == "c"){
     score += 5;
-    document.getElementById("ans").innerHTML = "Correct!";
+    document.getElementById("yup").style.visibility = "visible"; 
     document.getElementById("score").innerHTML = "Score: " + score;
   }
   else{
     timeLeft -=5;
-    document.getElementById("ans").innerHTML = "Wrong!";
+    document.getElementById("nope").style.visibility = "visible";
   }
 
   checks()
@@ -87,12 +114,12 @@ var showAnswerC = () =>{
 var showAnswerD = () =>{
   if (questions[currentQuestion].correctAnswer == "d"){
     score += 5;
-    document.getElementById("ans").innerHTML = "Correct!";
+    document.getElementById("yup").style.visibility = "visible";  
     document.getElementById("score").innerHTML = "Score: " + score;
   }
   else{
     timeLeft -=5;
-    document.getElementById("ans").innerHTML = "Wrong!";
+    document.getElementById("nope").style.visibility = "visible";
   }
   checks()
 }
@@ -125,29 +152,31 @@ var checks = () =>{
 var highScore =()=>{
   //***********still need to add functionality as stated above  
   document.getElementById("Q").innerHTML = "All Done! Your final score is: " + score;
-  document.getElementById("ans").innerHTML = "";
+  document.getElementById("tf").innerHTML = "";
   document.getElementById("tf").innerHTML = "";
   btnA.style.display = "none";
   btnB.style.display = "none";
   btnC.style.display = "none";
   btnD.style.display = "none";
 
-  
+
 
 
   var goBack = document.createElement("button");   
-    goBack.innerHTML = "Go Back";                   
+    goBack.innerHTML = "Play Again?";                   
     goBack.className = "restart";                    
     document.body.appendChild(goBack);  
 
+    goBack.addEventListener('click', startQuiz);
 }
 
 //triggers high score function
 //and clear timer
-var stopQuiz = function(){
+var stopQuiz = ()=> {
   timeLeft = "";
   highScore();
 }
+
 
 function countdown() {
   var timeInterval = setInterval(function() {
@@ -160,7 +189,7 @@ function countdown() {
     } else {
       timerEl.textContent = '';
       clearInterval(timeInterval);
-      // stopQuiz()
+      // stopQuiz()   this causes the stop quiz function to run twice and to make two go back buttons
     }
   }, 1000);
 
@@ -169,7 +198,9 @@ function countdown() {
 var startQuiz = function(event) {
   event.preventDefault(); 
 
-  submitButton.innerHTML = "Submit";               
+  submitButton.innerHTML = "Submit";    
+  
+  
  
   btnA = document.createElement("button");  
   btnA.className = "button"
