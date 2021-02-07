@@ -3,6 +3,21 @@ header {
   font-family: Impact, 'Arial Narrow Bold', sans-serif;
 }
 
+.btn {
+  color: blue;
+  font-weight: bold;
+}
+
 body {
   font-family: Impact, 'Arial Narrow Bold', sans-serif;
+}
+
+#page-content {
+  color: red;
+}
+
+.button {
+  color: rgb(15, 238, 15);
+  font-weight: bold;
+  background-color: rgb(0, 0, 0);
 }
