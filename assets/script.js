@@ -53,13 +53,14 @@ var printQuestion = ()=>{
     btnD.innerHTML = questions[currentQuestion].answers.d
 
     currentQuestion++;
+
+  btnA.addEventListener('click', showAnswer);
+  btnB.addEventListener('click', showAnswer);
+  btnC.addEventListener('click', showAnswer);
+  btnD.addEventListener('click', showAnswer);
+
 }
 
-//detects click
-btnA.addEventListener('click', showAnswer);
-btnB.addEventListener('click', showAnswer);
-btnC.addEventListener('click', showAnswer);
-btnD.addEventListener('click', showAnswer);
 
 //detects right/wrong
 //shows right/wrong
