@@ -2,7 +2,9 @@ var timerEl = document.getElementById('countdown');
 var timeLeft = 60;
 var currentQuestion = 0;
 var score = 0;
-var userInitialsInput = document.querySelector('#user-initials');
+var userInitialsInput = document.querySelector('#initials');
+// var userInitialsSpan = 
+// var userScoreSpan = 
 
 var btnA = "A";
 btnA.className = "ansAns";
@@ -174,43 +176,42 @@ var highScore =()=>{
   //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
   //https://www.w3schools.com/tags/att_button_form.asp
 
-  document.getElementById("Q").innerHTML = 
-  `All Done!
-  Your final score is: ${score}   //**************************how do i put the var score into this? 
-  <form id="entInitials">
-  <label for="enterInitials">Enter initials:</label>
-  <input type="text" id="initials" name="enterInitials">
-  </form>`;
+  document.getElementById("Q").innerHTML = "";
+  document.getElementById("R").classList.remove("hide");
+  //need code that targets the html span and sets the value to score
 
   document.getElementById("subBtnInitials").style.visibility = "visible"
 
-  score = document.querySelector('#user-score');
-  initials = document.querySelector('#user-initials');
 }
 
 //set new score to local storage
-submitInitials.addEventListener('click', function(event){ //***how do i target this button i created with js above?
+  submitInitials.addEventListener('click', function(event){ 
   event.preventDefault();
 
-  userInitialsInput = document.querySelector('#user-initials').Value;
-  score = document.querySelector('#user-score').Value;
+  savedInitials = userInitialsInput.value;
 
-  localStorage.setItem('initials', userInitialsInput);
+  localStorage.setItem('initials', savedInitials);
   localStorage.setItem('score', score);
 
   viewHighScore();
+ 
+
 });
 
 //retrieve local storage with high scores list
 //go back and clear buttons and listeners added here
+
+//link to diff high scores page and make sure high scores page goes back to main page
+//on this page setInnerHTML and plug in saveScore and savedInitials 
 var viewHighScore =()=>{
-  document.getElementById("Q").innerHTML = "High scores"
 
-  score = localStorage.getItem(initials);
-  userInitialsInput = localStorage.getItem(score);
+  var savedScore = localStorage.getItem(score);
+  var savedInitials = localStorage.getItem(initials);
 
-  userInitialsSpan.textContent = initials;     ///********this causes an error */
-  userScoreSpan.textContent = score;          //probably this too, i got this code from the class but wasnt sure it would work. 
+  //create li similar to buttons below with .innerHTML of `  <li>Name ${savedInititals} :  ${saveScore} </li>   `
+ //then append to high scores .html page to ul with id of ul scores 
+  //maybe 
+
 
   var goBack = document.createElement("button");   
     goBack.innerHTML = "Play Again?";                   
@@ -224,10 +225,14 @@ var viewHighScore =()=>{
     goBack.className = "clearHigh";                    
     document.body.appendChild(clear);  
 
-    clear.addEventListener('click');
-
-
+    clear.addEventListener('click', function() {
+      localStorage.setItem("initials", "");
+      localStorage.setItem("score", "");
+    } );
 }
+
+
+
 
 //triggers high score function
 //and clear timeLeft var
