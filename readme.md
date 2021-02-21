@@ -34,4 +34,4 @@ Katherine Lynn
 
 ## Github repository: 
 
-[Github repository](https://github.com/klynn726/code-quiz)
+[Github repository](https://github.com/klynn726/code-quiz/tree/main)
