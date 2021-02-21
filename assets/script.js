@@ -3,8 +3,7 @@ var timeLeft = 60;
 var currentQuestion = 0;
 var score = 0;
 var userInitialsInput = document.querySelector('#initials');
-// var userInitialsSpan = 
-// var userScoreSpan = 
+
 
 var btnA = "A";
 btnA.className = "ansAns";
@@ -166,6 +165,7 @@ var checks = () =>{
 //add initials
 
 var highScore =()=>{ 
+  document.getElementById("finalScore").innerHTML = score;
   document.getElementById("score").innerHTML = "";
 
   btnA.style.display = "none"; //https://www.w3schools.com/jsref/prop_style_display.asp
@@ -188,48 +188,53 @@ var highScore =()=>{
   submitInitials.addEventListener('click', function(event){ 
   event.preventDefault();
 
+
   savedInitials = userInitialsInput.value;
 
   localStorage.setItem('initials', savedInitials);
   localStorage.setItem('score', score);
 
-  viewHighScore();
+  // var goBack = document.createElement("button");   
+  // goBack.innerHTML = "Play Again?";                   
+  // goBack.className = "restart";                    
+  // document.body.appendChild(goBack);  
+
+  // goBack.addEventListener('click', function(){
  
+  // score = 0;
+  // timeLeft = 60;
+  // document.getElementById("R").style.visibility = "hidden";
+  // submitInitials.style.visibility = "hidden";
+  // goBack.style.visibility = "hidden";
+
+  // startQuiz()
+
+  // });
+
+  this.disabled = true;
 
 });
 
 //retrieve local storage with high scores list
-//go back and clear buttons and listeners added here
+//go back button and listener added here
 
-//link to diff high scores page and make sure high scores page goes back to main page
-//on this page setInnerHTML and plug in saveScore and savedInitials 
-var viewHighScore =()=>{
+// var viewHighScore =()=>{
 
-  var savedScore = localStorage.getItem(score);
-  var savedInitials = localStorage.getItem(initials);
-
-  //create li similar to buttons below with .innerHTML of `  <li>Name ${savedInititals} :  ${saveScore} </li>   `
- //then append to high scores .html page to ul with id of ul scores 
-  //maybe 
+  // var savedScore = localStorage.getItem(score);
+  // var savedInitials = localStorage.getItem(initials); 
 
 
-  var goBack = document.createElement("button");   
-    goBack.innerHTML = "Play Again?";                   
-    goBack.className = "restart";                    
-    document.body.appendChild(goBack);  
+ 
 
-    goBack.addEventListener('click', startQuiz);
+    // var clear = document.createElement("button");   
+    // clear.innerHTML = "Clear high scores";                   
+    // goBack.className = "clearHigh";                    
+    // document.body.appendChild(clear);  
 
-    var clear = document.createElement("button");   
-    clear.innerHTML = "Clear high scores";                   
-    goBack.className = "clearHigh";                    
-    document.body.appendChild(clear);  
-
-    clear.addEventListener('click', function() {
-      localStorage.setItem("initials", "");
-      localStorage.setItem("score", "");
-    } );
-}
+    // clear.addEventListener('click', function() {
+    // localStorage.setItem("initials", "");
+    // localStorage.setItem("score", "");
+// };
 
 
 
