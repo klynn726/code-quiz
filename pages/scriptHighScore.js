@@ -12,15 +12,17 @@ localStorage.setItem("score", "");
 
 //on this page setInnerHTML and plug in saveScore and savedInitials 
 
-  var savedScore = localStorage.getItem(score);
-  var savedInitials = localStorage.getItem(initials);
-  var initialScore = savedScore + ' - ' + savedInitials;
+  var savedScore = localStorage.getItem('score');
+  var savedInitials = localStorage.getItem('initials');
+
+  var initialScore = savedInitials + ' - ' + savedScore;
+
 
   var list = document.createElement("LI");
   var listTxt = document.createTextNode(initialScore);
-  
 
   list.appendChild(listTxt);
+  document.getElementById("ulScores").appendChild(list);
 
   // document.getElementById("ulScores").appendChild(listTxt);
 
