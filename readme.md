@@ -17,7 +17,7 @@ There are no steps to install. Please navigate to the deployed site using the li
 
 Navigate to the deployed page to view the site. Below is a snapshot of the site.
 
-![Image of site]()
+![Image of site](./assets/Screenshot.png)
 
 ## License: 
 
