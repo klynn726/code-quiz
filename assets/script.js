@@ -6,13 +6,13 @@ var userInitialsInput = document.querySelector('#initials');
 
 
 var btnA = "A";
-btnA.className = "ansAns";
+btnA.className = "btn";
 var btnB = "B";
-btnB.className = "ansAns";  
+btnB.className = "btn";  
 var btnC = "C";
-btnC.className = "ansAns";  
+btnC.className = "btn";  
 var btnD = "D";
-btnD.className = "ansAns";  
+btnD.className = "btn";  
 
 var submitButton = document.createElement("BUTTON");   
 submitButton.innerHTML = "Start Quiz";                   
@@ -21,7 +21,7 @@ document.body.appendChild(submitButton);
 
 var submitInitials = document.createElement("BUTTON");   
 submitInitials.innerHTML = "Submit";                   
-submitInitials.className = "btnSubInitials";  
+submitInitials.className = "btn";  
 submitInitials.id = "subBtnInitials"
 document.body.appendChild(submitInitials);  
 document.getElementById("subBtnInitials").style.visibility = "hidden";

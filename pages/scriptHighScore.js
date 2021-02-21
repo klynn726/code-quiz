@@ -1,7 +1,7 @@
 
 var clear = document.createElement("button");   
 clear.innerHTML = "Clear High Scores";                   
-clear.className = "clearHigh";                    
+clear.className = "btn";                    
 document.body.appendChild(clear);  
 
 clear.addEventListener('click', function() {
