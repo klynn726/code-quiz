@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="../assets/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coding Quiz</title>
+  <title>High Scores</title>
 </head>
 <header>
   <div id="mainPage">
-    <a href="../index.html" target="_blank">Quiz</a>
+    <a href="../index.html" target="_blank" class=" indigo-text text-darken-4">Quiz</a>
   </div>
   <div id="score"></div>
   <div id="countdown"></div>
 </header>
 
 <body>
-  <main id="page-content">
+  <main id="page-content" class="container">
     <div>
-      <p>
+      <h1>
         Leaderboard
-      </p>
+      </h1>
       <ul id="ulScores">
-        <li>
 
-        </li>
       </ul>
     </div>
   </main>
 
-  <script src="../assets/script.js"></script>
+  <script src="../pages/scriptHighScore.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </body>
 
 </html>

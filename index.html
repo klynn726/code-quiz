@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="./assets/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
 
 <head>
   <meta charset="UTF-8">
@@ -9,14 +11,14 @@
 </head>
 <header>
   <div id="highScores">
-    <a href = "pages/highScores.html" target = "_blank">View High Scores</a>
+    <a href="pages/highScores.html" target="_blank" class=" indigo-text text-darken-4">View High Scores</a>
   </div>
   <div id="score"></div>
   <div id="countdown"></div>
 </header>
 
 <body>
-  <main id="page-content">
+  <main id="page-content" class="container">
     <div id="Q">
       <h1>Coding Quiz Challange</h1>
       <p>Try to answer the following code-related questions within the time. <br>
@@ -29,20 +31,24 @@
       <p>All Done!<br>
         Your final score is:<span id="finalScore"></span></p>
 
-      <label for="enterInitials">Enter initials:</label>
+      <label for="enterInitials" class=" indigo-text text-darken-4">Enter initials:</label>
       <input type="text" id="initials" name="enterInitials">
-      
+
     </div>
 
     <div id="ans" class="ansAns">
 
     </div>
 
+
+
   </main>
 
 
 
   <script src="assets/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </body>
 
 </html>

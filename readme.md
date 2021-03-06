@@ -17,7 +17,7 @@ There are no steps to install. Please navigate to the deployed site using the li
 
 Navigate to the deployed page to view the site. Below is a snapshot of the site.
 
-![First image of site]()
+![Image of site](./assets/Screenshot.png)
 
 ## License: 
 
@@ -34,4 +34,4 @@ Katherine Lynn
 
 ## Github repository: 
 
-[Github repository](https://github.com/klynn726/code-quiz)
+[Github repository](https://github.com/klynn726/code-quiz/tree/main)
